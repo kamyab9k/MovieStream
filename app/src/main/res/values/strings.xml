@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">registerPage</string>
+    <string name="welcome">Welcome</string>
+    <string name="welcome_description">Let\'s get started by filling in the blanks</string>
+    <string name="input_field_name_label">Name</string>
+    <string name="input_field_lastname_label">Last name</string>
+    <string name="input_field_id_number_label">ID number</string>
+    <string name="date_picker">Birthday</string>
+    <string name="button_register">Register</string>
+    <string name="user_info_title">User Information</string>
+    <string name="name_info">Name :\ </string>
+    <string name="lastname_info">Last Name :\ </string>
+    <string name="id_number_info">ID number :\ </string>
+    <string name="Birthday_info">Birthday :\ </string>
+    <string name="button_logout_info">Log out</string>
+
+</resources>
