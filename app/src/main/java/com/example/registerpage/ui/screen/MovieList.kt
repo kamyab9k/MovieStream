@@ -16,9 +16,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.registerpage.data.MovieApiService
+import com.example.registerpage.data.OkHttpClientInstance
 import com.example.registerpage.data.repository.Movie
 import com.example.registerpage.data.repository.MovieResponse
+import com.example.registerpage.data.repository.parseMoviesResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,21 +34,17 @@ fun MovieList() {
     var error by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
-        MovieApiService.api.getMovies().enqueue(object : Callback<MovieResponse> {
-            override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
+        withContext(Dispatchers.IO) {
+            val response = OkHttpClientInstance.getPopularMovies()
+            withContext(Dispatchers.Main) {
                 loading = false
-                if (response.isSuccessful) {
-                    movies = response.body()?.movies.orEmpty()
+                if (response?.isSuccessful == true) {
+                    movies = parseMoviesResponse(response)
                 } else {
-                    error = "Failed to load movies."
+                    error = "Failed to load movies. Response code: ${response?.code}"
                 }
             }
-
-            override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
-                loading = false
-                error = "Network error: ${t.message}"
-            }
-        })
+        }
     }
 
     if (loading) {
@@ -70,3 +69,53 @@ fun MovieList() {
         }
     }
 }
+
+
+//
+//@Composable
+//fun MovieList() {
+//    var movies by remember { mutableStateOf(listOf<Movie>()) }
+//    var selectedMovie by remember { mutableStateOf<Movie?>(null) }
+//    var loading by remember { mutableStateOf(true) }
+//    var error by remember { mutableStateOf<String?>(null) }
+//
+//    LaunchedEffect(Unit) {
+//        MovieApiService.api.getMovies().enqueue(object : Callback<MovieResponse> {
+//            override fun onResponse(call: Call<MovieResponse>, response: Response<MovieResponse>) {
+//                loading = false
+//                if (response.isSuccessful) {
+//                    movies = response.body()?.movies.orEmpty()
+//                } else {
+//                    error = "Failed to load movies."
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<MovieResponse>, t: Throwable) {
+//                loading = false
+//                error = "Network error: ${t.message}"
+//            }
+//        })
+//    }
+//
+//    if (loading) {
+//        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+//            CircularProgressIndicator()
+//        }
+//    } else if (error != null) {
+//        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+//            Text(text = error ?: "Unknown error", color = MaterialTheme.colors.error)
+//        }
+//    } else {
+//        Column {
+//            if (selectedMovie != null) {
+//                MovieDetail(movie = selectedMovie!!, onBack = { selectedMovie = null })
+//            } else {
+//                LazyColumn {
+//                    items(movies) { movie ->
+//                        MovieItem(movie = movie, onClick = { selectedMovie = it })
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
