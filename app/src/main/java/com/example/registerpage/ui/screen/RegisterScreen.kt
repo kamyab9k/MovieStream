@@ -191,7 +191,7 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                     registerViewModel.saveUserData(name, lastName, idNumber, pickedDate)
                     registerViewModel.saveSignUpStatus(true)
                     navController.popBackStack()
-                    navController.navigate(route = Screen.MovieList.route)
+                    navController.navigate(route = Screen.MainScreen.route)
 //                    navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
                 } else {
                     inputValid = false

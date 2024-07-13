@@ -27,10 +27,10 @@ fun MovieDetail(movie: Movie, onBack: () -> Unit) {
             modifier = Modifier.fillMaxWidth(),
             contentScale = ContentScale.Crop
         )
-//        Text(text = "Score: ${movie.score}", color = Color.Gray)
+        Text(text = "Score: ${movie.vote_average}", color = Color.Gray)
         Text(text = "Release Date: ${movie.release}", color = Color.Gray)
         Spacer(modifier = Modifier.height(16.dp))
-//        Text(text = movie.plot, color = Color.Black)
+        Text(text = movie.overview, color = Color.Black)
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { /* Handle watch movie */ }) {
             Text("Watch Movie")

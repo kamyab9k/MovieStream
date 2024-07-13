@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,12 +30,15 @@ fun MovieItem(movie: Movie, onClick: (Movie) -> Unit) {
         Image(
             painter = rememberImagePainter(IMAGE_BASE_URL + movie.poster),
             contentDescription = null,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                    .width(100.dp)  // Set a fixed width for the poster
+                .height(150.dp) // Set a fixed height for the poster
         )
         Spacer(modifier = Modifier.width(16.dp))
         Column {
             Text(text = movie.title, color = Color.Black)
-//            Text(text = "Score: ${movie.score}", color = Color.Gray)
+            Text(text = "Score: ${movie.vote_average}", color = Color.Gray)
             Text(text = "Release Date: ${movie.release}", color = Color.Gray)
         }
     }
