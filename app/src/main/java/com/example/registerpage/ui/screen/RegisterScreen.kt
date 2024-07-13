@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.registerpage.R
+import com.example.registerpage.ui.navigationCompose.Screen
 import com.example.registerpage.ui.viewModel.RegisterViewModel
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
@@ -190,10 +191,10 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                     registerViewModel.saveUserData(name, lastName, idNumber, pickedDate)
                     registerViewModel.saveSignUpStatus(true)
                     navController.popBackStack()
-                    navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
+                    navController.navigate(route = Screen.MovieList.route)
+//                    navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
                 } else {
                     inputValid = false
-
                     Toast.makeText(context, "Please fill in all the blanks", Toast.LENGTH_SHORT)
                         .show()
                 }
