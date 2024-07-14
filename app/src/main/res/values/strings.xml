@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">registerPage</string>
+    <string name="app_name">MovieStream</string>
     <string name="welcome">Welcome</string>
     <string name="welcome_description">Let\'s get started by filling in the blanks</string>
     <string name="input_field_name_label">Name</string>

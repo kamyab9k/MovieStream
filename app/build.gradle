@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.registerpage'
+    namespace 'com.example.movieStream'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.registerpage"
+        applicationId "com.example.movieStream"
         minSdk 29
         targetSdk 34
         versionCode 1
