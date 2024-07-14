@@ -23,7 +23,7 @@ fun SetupNavGraph(navController: NavHostController, registerViewModel: RegisterV
             Screen.Register.route
         }
     ) {
-        composable("main_screen") {
+        composable(Screen.MainScreen.route) {
             MainScreen(registerViewModel)
         }
         composable(

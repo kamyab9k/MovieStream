@@ -11,6 +11,8 @@ data class Movie(
     @SerializedName("poster_path") val poster: String,
     @SerializedName("overview") val overview: String,
     @SerializedName("release_date") val release: String,
+    @SerializedName("original_language") val original_language: String,
+    @SerializedName("vote_count") val vote_count: Int,
 )
 
 fun parseMoviesResponse(response: Response?): List<Movie> {

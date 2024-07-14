@@ -18,7 +18,6 @@ fun MainScreen(registerViewModel: RegisterViewModel) {
     val navController = rememberNavController()
     val currentScreen = remember { mutableStateOf<Screen>(Screen.MovieList) }
 
-
     Scaffold(
         bottomBar = {
             BottomNavBar(
@@ -26,8 +25,8 @@ fun MainScreen(registerViewModel: RegisterViewModel) {
                 onTabSelected = { screen ->
                     currentScreen.value = screen
                     when(screen) {
-                        is Screen.MovieList -> navController.navigate("movie_list")
-                        is Screen.UserProfile -> navController.navigate("user_profile")
+                        is Screen.MovieList -> navController.navigate(Screen.MovieList.route)
+                        is Screen.UserProfile -> navController.navigate(Screen.UserProfile.route)
                         Screen.Register -> TODO()
                         Screen.UserInfo -> TODO()
                         Screen.MainScreen -> TODO()
